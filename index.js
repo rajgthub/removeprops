@@ -67,6 +67,15 @@ const countFalsy = (passedObj = {}) => {
   });
   return falsyCount;
 };
+console.log(removeOneOrManyFalsyProps([
+    { k1: 1, k2: "" },
+    { k1: "", k2: "hi" }
+], "k1"));
+console.log(removeOneOrManyFalsyProps([
+    { k1: 1, k2: "" },
+    { k1: "", k2: "hi" }
+], "k1", "k2"))
+console.log(countFalsy({ k1: 2, k3: "something", k4: false, k5: "", k6: 0 }));
 module.exports = { removeFalsyProps,
                    removeOneOrManyProps, 
                    removeOneOrManyFalsyProps,
