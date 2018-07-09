@@ -2,7 +2,7 @@ const removeFalsyProps = (passedObj = {}) => {
     const modifiedObj = {};
     const keys = Object.keys(passedObj);
     if (passedObj.constructor !== Object || !keys.length) {
-        return "Argument is not a valid object";
+        throw new Error("Argument is not a valid object");
     }
     keys.forEach(key => {
         if (passedObj[key]) {
@@ -19,7 +19,7 @@ const removeOneOrManyProps = (passedArray = [], ...args) => {
         !passedArray.length ||
         !args.length
     ) {
-        return "Passed array or argument is not valid";
+        throw new Error("Passed array or argument is not valid");
     }
     return passedArray.map(obj => {
         let keys = Object.keys(obj);
