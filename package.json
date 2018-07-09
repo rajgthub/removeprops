@@ -1,0 +1,15 @@
+{
+  "name": "removeprops",
+  "version": "1.0.1",
+  "description": "This module can help remove a particular key and value of an object or array of objects or nested object",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "prepublish": "npm test"
+  },
+  "author": "Rasadurai Rajavaheinthan",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^23.3.0"
+  }
+}
