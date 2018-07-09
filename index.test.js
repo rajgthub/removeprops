@@ -1,4 +1,9 @@
-const { removeFalsyProps, removeOneOrManyProps } = require("./index");
+const { 
+        removeFalsyProps, 
+        removeOneOrManyProps,
+        removeOneOrManyFalsyProps,
+        countFalsy
+      } = require("./index");
 
 describe("function removeFalsyProps:", () => {
     test("should return error message for default argument", () => {
@@ -58,4 +63,53 @@ describe('function removeOneOrManyProps:', () => {
          expect(() => removeOneOrManyProps([{ k1: 1, k2: "4" }, { k1: 2, k2: "hi" }]))
             .toThrow("Passed array or argument is not valid");
     });
+})
+describe('testing removeOneOrManyFalsyProps:', () => {
+    test('should not remove any prop from the array of objects without second argument passed', 
+        () => {
+            expect(() => removeOneOrManyFalsyProps([
+                { k1: 1, k2: "" },
+                { k1: "", k2: "hi" }
+            ])).toThrow("Passed array or argument is not valid")
+        }
+    )
+    test('should remove all false props from the array of objects', 
+        () => {
+            expect(removeOneOrManyFalsyProps([
+                { k1: 1, k2: "" },
+                { k1: "", k2: "hi" }
+            ], "k1")).toEqual([{ k1: 1, k2: ""},
+                { k2: "hi" }])
+        }
+    )
+    test('should not mutate original array',
+        () => {
+            let set = [{ k1: 1, k2: "" }, { k1: "", k2: "hi" }];
+            let got = removeOneOrManyFalsyProps([
+                { k1: 1, k2: "" },
+                { k1: "", k2: "hi" }
+            ], "k1", "k2")
+            expect(set).toEqual([
+              { k1: 1, k2: "" },
+              { k1: "", k2: "hi" }
+            ]);
+            expect(got).toEqual([
+                { k1: 1},
+                {k2: "hi" }
+            ]);
+        }
+    )
+})
+describe('Testing countFalsy', () => {
+    let put = { k1: 2, k3: "something", k4: false, k5: "", k6: 0 }
+    let got = countFalsy(put)
+    let check = 3
+    test(`should return 2 for the object ${JSON.stringify(put, undefined, 2)}`,
+    () => {
+        expect(got).toEqual(check)
+    })
+    test('should throw an error for function called with default value',
+    () => {
+        expect(() => countFalsy()).toThrow("Argument is not a valid object")
+    })
 })
