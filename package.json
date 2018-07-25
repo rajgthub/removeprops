@@ -1,6 +1,6 @@
 {
   "name": "removeprops",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "This module can help remove a particular key and value of an object or array of objects or nested object",
   "main": "index.js",
   "scripts": {
